@@ -1,0 +1,2 @@
+J0: ["$", "h1", null, { "class": "foo", "children": "hello"}]
+J1: ["$", "h2", null, { "children": "world!"}]
