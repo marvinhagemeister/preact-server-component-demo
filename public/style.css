@@ -5,7 +5,48 @@ body {
 	padding: 2rem;
 }
 
+button {
+	background: linear-gradient(135deg, #6e8efb, #a777e3);
+	border: none;
+	color: white;
+	padding: 0.5rem 1rem;
+	border-radius: 0.5rem;
+	box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+	cursor: pointer;
+	margin: 0.5rem 0 1rem;
+	font-size: 1rem;
+	transition: all 0.15s;
+}
+
+button:focus {
+	background: linear-gradient(135deg, #a777e3, #e37786);
+	outline: none;
+}
+
+button:active {
+	transform: translateY(7%);
+}
+
 .area {
+	margin: 1rem 0;
 	display: grid;
-	grid-template-columns: 1fr 1fr;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	grid-gap: 1rem;
+}
+
+.server-component {
+	background: #f0f0f0;
+	border-radius: 1rem;
+	padding: 1rem 1.5rem;
+	min-height: 8rem;
+}
+
+.area-title {
+	margin: 0;
+	font-size: 1rem;
+	font-weight: normal;
+	text-transform: uppercase;
+	color: #673ab8;
+	font-size: 0.8rem;
+	padding-right: 1rem;
 }

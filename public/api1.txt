@@ -1,2 +1,2 @@
-J0: ["$", "h1", null, { "class": "foo", "children": "hello"}]
-J1: ["$", "h2", null, { "children": "world!"}]
+J0: ["$", "h3", null, { "class": "foo", "children": "hello"}]
+J1: ["$", "h3", null, { "children": "world!"}]
