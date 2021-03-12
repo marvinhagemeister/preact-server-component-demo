@@ -4,6 +4,8 @@
     "module": "CommonJS",
     "moduleResolution": "Node",
     "target": "ES2018",
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "jsx": "preserve",
+    "jsxFactory": "h"
   }
 }

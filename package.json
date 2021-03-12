@@ -5,7 +5,7 @@
 	"main": "index.js",
 	"scripts": {
 		"start": "concurrently -k 'npm:start:server' 'npm:build'",
-		"build": "esbuild src/client/index.ts --bundle --outfile=public/client.js --watch",
+		"build": "esbuild src/client/index.tsx --bundle --outfile=public/client.js --watch",
 		"start:server": "node -r ts-node/register src/server.ts"
 	},
 	"keywords": [],
