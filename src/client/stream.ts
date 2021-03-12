@@ -1,5 +1,6 @@
 import { h, render, ComponentChildren } from "preact";
 import { jsx } from "preact/jsx-runtime";
+import { RootContextData } from "./FakeRoots";
 
 type StreamedProps = Record<string, any> & {
 	children: StreamedChild | StreamedChild[];
@@ -56,7 +57,7 @@ function toVNode(registry: Registry, input: StreamedVNode): ComponentChildren {
 	return input;
 }
 
-export async function parse(input: string) {
+export async function parse(roots: RootContextData["roots"], input: string) {
 	const commands = input.split("\n").filter(Boolean);
 
 	// TODO: Consider making this global
@@ -85,14 +86,13 @@ export async function parse(input: string) {
 				const d = data as StreamedVNode;
 				const vnode = toVNode(registry, d);
 				const rootId = cmd.slice(0, idx);
-				const selector = `[data-root="${rootId}"]`;
-				const root = document.querySelector(selector);
 
-				if (!root) {
-					throw new Error(`No element found with selector ${selector}`);
+				const update = roots.get(rootId);
+				if (!update) {
+					throw new Error(`No element found with selector ${rootId}`);
 				}
 
-				render(vnode, root);
+				update(vnode);
 				break;
 			}
 			default:

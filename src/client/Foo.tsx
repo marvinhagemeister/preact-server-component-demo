@@ -1,11 +1,15 @@
 import { h } from "preact";
+import { useState } from "preact/hooks";
 
 export function Foo({ children }: any) {
+	const [v, set] = useState(0);
+
 	return (
 		<div class="client-component">
 			<h2>Child component</h2>
-			<p>...with server content: </p>
-			<p>{children}!!!</p>
+			<p>Server content: {children}!!!</p>
+			<p>Counter: {v}</p>
+			<button onClick={() => set(v + 1)}>Update</button>
 		</div>
 	);
 }
