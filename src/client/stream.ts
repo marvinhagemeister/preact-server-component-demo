@@ -12,16 +12,42 @@ type StreamedChild =
 
 type StreamedVNode = StreamedChild | StreamedChild[];
 
-function toVNode(input: StreamedVNode): ComponentChildren {
+export interface StreamedModule {
+	id: string;
+}
+
+type Registry = Map<string, Record<string, any>>;
+
+function toVNode(registry: Registry, input: StreamedVNode): ComponentChildren {
 	if (Array.isArray(input) && input.length > 0) {
 		if (Array.isArray(input[0])) {
-			return input.map((v: any) => toVNode(v));
+			return input.map((v: any) => toVNode(registry, v));
 		} else if (input[0] === "$") {
-			const type = input[1] as string;
+			let type = input[1] as string;
+
+			// Reference type
+			if (type[0] === "@") {
+				const [name, importId] = type.slice(1).split("#");
+				const mod = registry.get(name);
+
+				if (!mod) {
+					throw new Error(`Module "${name}" not found in local registry.`);
+				}
+
+				const c = mod[importId];
+				if (!c) {
+					throw new Error(
+						`Export "${importId}" not found in module "${name}".`,
+					);
+				}
+
+				type = c;
+			}
+
 			const key = input[2] as any;
 			const props = { ...(input[3] as any) };
 			if ("children" in props) {
-				props.children = toVNode(props.children);
+				props.children = toVNode(registry, props.children);
 			}
 			return jsx(type, props, key);
 		}
@@ -30,18 +56,35 @@ function toVNode(input: StreamedVNode): ComponentChildren {
 	return input;
 }
 
-export function parse(input: string) {
+export async function parse(input: string) {
 	const commands = input.split("\n").filter(Boolean);
 
+	// TODO: Consider making this global
+	const registry: Registry = new Map();
+
 	// TODO: Add support for adding script tags
-	commands.forEach(cmd => {
+	for (const cmd of commands) {
 		const idx = cmd.indexOf(":");
+		const type = cmd.slice(0, idx);
 		const raw = cmd.slice(idx + 1);
-		const data = JSON.parse(raw) as StreamedVNode;
+		const data = JSON.parse(raw);
 
 		switch (cmd[0]) {
+			case "M": {
+				const d = data as StreamedModule;
+				console.log(d);
+				try {
+					// @ts-ignore
+					const m = await import(d.id);
+					registry.set(type, m);
+				} catch (err) {
+					throw err;
+				}
+				break;
+			}
 			case "J": {
-				const vnode = toVNode(data);
+				const d = data as StreamedVNode;
+				const vnode = toVNode(registry, d);
 				const rootId = cmd.slice(0, idx);
 				const selector = `[data-root="${rootId}"]`;
 				const root = document.querySelector(selector);
@@ -56,5 +99,5 @@ export function parse(input: string) {
 			default:
 				throw new Error(`Unknown type: ${cmd}`);
 		}
-	});
+	}
 }

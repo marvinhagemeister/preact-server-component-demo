@@ -38,8 +38,8 @@ http
 
 				res.end(out);
 			});
+		} else {
+			file.serve(req, res);
 		}
-
-		file.serve(req, res);
 	})
 	.listen(PORT);

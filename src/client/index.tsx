@@ -60,6 +60,11 @@ const App = () => {
 						/>
 					</div>
 				</div>
+				<div class="server-component">
+					<h2 class="area-title">Server Component C</h2>
+					<ServerLoader hash="data.server.js#ServerComponent3" />
+					<div data-root="J2"></div>
+				</div>
 			</div>
 			<br />
 		</main>

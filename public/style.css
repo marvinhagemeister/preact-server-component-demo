@@ -41,6 +41,14 @@ button:active {
 	min-height: 8rem;
 }
 
+.client-component {
+	margin: 1rem 0;
+	background: white;
+	border-radius: 1rem;
+	padding: 0.5rem 1rem;
+	min-height: 8rem;
+}
+
 .area-title {
 	margin: 0;
 	font-size: 1rem;

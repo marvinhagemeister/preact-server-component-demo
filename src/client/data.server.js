@@ -14,4 +14,11 @@ module.exports = {
 				: ["$", "h3", null, { class: "foo", children: "Franzbrötchen" }],
 		};
 	},
+
+	ServerComponent3: () => {
+		return {
+			M1: { id: "./foo.client.js", name: "Foo" },
+			J2: ["$", "@M1#Foo", null, { children: "Client component!" }],
+		};
+	},
 };

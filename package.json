@@ -4,8 +4,9 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"start": "concurrently -k 'npm:start:server' 'npm:build'",
-		"build": "esbuild src/client/index.tsx --bundle --outfile=public/client.js --watch",
+		"start": "concurrently -k 'npm:start:server' 'npm:build' 'npm:build2'",
+		"build": "esbuild src/client/index.tsx --bundle --outfile=public/client.js --watch --format=esm",
+		"build2": "esbuild src/client/Foo.tsx --bundle --outfile=public/foo.client.js --watch --format=esm",
 		"start:server": "node -r ts-node/register src/server.ts"
 	},
 	"keywords": [],
