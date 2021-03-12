@@ -116,3 +116,4 @@ dist
 .pnp.*
 
 public/client.js
+public/*.client.js

@@ -1,2 +1,0 @@
-J0: ["$", "p", null, { "children": "This is text coming from the server"}]
-J1: ["$", "h3", null, { "class": "foo", "children": "Franzbrötchen"}]
