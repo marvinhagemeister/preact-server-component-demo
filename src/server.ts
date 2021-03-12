@@ -19,7 +19,7 @@ http
 					const [key, value] = part;
 					if (key === "module") return acc;
 					// @ts-ignore
-					acc[key] = value;
+					acc[key] = value === "true";
 					return acc;
 				},
 				{},
