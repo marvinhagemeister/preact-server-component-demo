@@ -9,7 +9,7 @@ module.exports = {
 
 	ServerComponent2: ({ state }) => {
 		return {
-			J0: state
+			J1: state
 				? ["$", "h3", null, { children: "world!" }]
 				: ["$", "h3", null, { class: "foo", children: "Franzbrötchen" }],
 		};
