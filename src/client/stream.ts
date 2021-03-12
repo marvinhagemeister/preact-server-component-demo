@@ -72,7 +72,6 @@ export async function parse(input: string) {
 		switch (cmd[0]) {
 			case "M": {
 				const d = data as StreamedModule;
-				console.log(d);
 				try {
 					// @ts-ignore
 					const m = await import(d.id);
