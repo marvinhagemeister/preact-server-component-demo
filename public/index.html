@@ -8,7 +8,16 @@
 		<link rel="stylesheet" href="./style.css" />
 	</head>
 	<body>
+		<script type="importmap">
+			{
+				"imports": {
+					"preact/hooks": "/preact.client.js",
+					"preact/jsx-runtime": "/preact.client.js",
+					"preact": "/preact.client.js"
+				}
+			}
+		</script>
 		<div id="app"></div>
-		<script src="client.js"></script>
+		<script type="module" src="client.js"></script>
 	</body>
 </html>

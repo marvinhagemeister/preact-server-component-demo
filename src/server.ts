@@ -12,7 +12,10 @@ console.log(`Listening at http://localhost:${PORT}`);
 http
 	.createServer((req, res) => {
 		const url = new URL(`http://localhost:${PORT}${req.url}`);
-		if (url.pathname.startsWith("/preact")) {
+		if (
+			url.pathname.startsWith("/preact") &&
+			url.pathname !== "/preact.client.js"
+		) {
 			const mod = url.searchParams.get("module") || "";
 			const props = Array.from(url.searchParams.entries()).reduce(
 				(acc, part) => {

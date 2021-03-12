@@ -5,8 +5,7 @@
     "moduleResolution": "Node",
     "target": "ES2018",
     "esModuleInterop": true,
-    "jsx": "preserve",
+    "jsx": "react",
     "jsxFactory": "h"
-  },
-  "files": ["./src/server.ts"]
+  }
 }

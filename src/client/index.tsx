@@ -10,8 +10,7 @@ const App = () => {
 		<main>
 			<FakeRootProvider>
 				<h1>
-					<span class="atom">⚛</span>
-					Preact Server Components
+					<span class="atom">⚛</span> Preact Server Components
 				</h1>
 				<p>
 					This demo demonstrates how components are rendered on the server and
@@ -38,14 +37,13 @@ const App = () => {
 							state={state}
 						/>
 					</div>
-					<div class="server-component">
-						<h2 class="area-title">Server Component C</h2>
-						<FakeRoot
-							hash="data.server.js#ServerComponent3"
-							name="J2"
-							state={state}
-						/>
-					</div>
+				</div>
+				<div class="area-full">
+					<FakeRoot
+						hash="data.server.js#ServerComponent3"
+						name="J2"
+						state={state}
+					/>
 				</div>
 				<br />
 			</FakeRootProvider>

@@ -6,8 +6,8 @@ export function Foo({ children }: any) {
 
 	return (
 		<div class="client-component">
-			<h2>Child component</h2>
-			<p>Server content: {children}!!!</p>
+			<h2 class="area-title">Child component</h2>
+			<p>Passed Server content:{children}!!!</p>
 			<p>Counter: {v}</p>
 			<button onClick={() => set(v + 1)}>Update</button>
 		</div>
